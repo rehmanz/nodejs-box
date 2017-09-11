@@ -104,7 +104,7 @@ Vagrant Box for NodeJS Application
     
 ## Design Considerations
 #### Provisioning Tool
-Salt Stack was offers distinct advantage over other provisioning tools.
+Salt Stack offers distinct advantage over other provisioning tools.
 - Highly scalable due to it's multi-master architecture
 - Reactor system gives Salt the ability to automatically trigger recovery action(s) in response to an event. Events from each minion can be sent to Salt Master or third party applications. 
 - Salt command module provides an SSH-less interface to send command to targeted minions
@@ -112,10 +112,10 @@ Salt Stack was offers distinct advantage over other provisioning tools.
 
 #### Validation
 - *Versioning* of all the tools within the tools chain is one of the most important aspects of validation and testing. All tools must be versioned and tested on targeted OS. 
-- All combinations of operating systems must be tested thourough
+- All combinations of operating systems must be tested thouroughly
 - In order to ensure repeatability of infrastructure, this repository must be setup with a Continuous Integration (CI) tool such as Team City or Jenkins. Each change set should trigger a build that spins up the application and performs the necessary validation. All changes off of feature branch must be reviewed and validated before they are checked into the main line. 
 
 #### Monitoring
 For this project, Salt Stack [Beacons](https://docs.saltstack.com/en/latest/topics/beacons/) will be sufficient for monitoring. Custom monitoring scripts can be developed to monitor several processes (app, mysql, memcached), CPU and disk usage. 
 
-For staging and production environments, we can integrate with (Sensu)[https://sensuapp.org/] or other leading monitoring tool. We will also need to setup an Elastic Stack to gather and monitor logging. Eventually aggregate all the incidents and generate "actionable" alerts to Slack or Pager Duty for notification.
+For staging and production environments, we can integrate with [Sensu](https://sensuapp.org/) or other leading monitoring tool. We will also need to setup an Elastic Stack to gather and monitor logging. Eventually aggregate all the incidents and generate "actionable" alerts to Slack or Pager Duty for notification.
