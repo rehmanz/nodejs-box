@@ -13,11 +13,6 @@ Vagrant.configure("2") do |config|
   config.vm.synced_folder "application", "/opt/app/"
 
   ##
-  # Application Setup
-  ##
-  config.vm.synced_folder "application", "/opt/app/"
-
-  ##
   # Provisioning Logic
   ##
   config.vm.synced_folder "salt/base", "/srv/salt/formulas/base"
