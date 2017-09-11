@@ -119,4 +119,3 @@ Salt Stack was offers distinct advantage over other provisioning tools.
 For this project, Salt Stack [Beacons](https://docs.saltstack.com/en/latest/topics/beacons/) will be sufficient for monitoring. Custom monitoring scripts can be developed to monitor several processes (app, mysql, memcached), CPU and disk usage. 
 
 For staging and production environments, we can integrate with (Sensu)[https://sensuapp.org/] or other leading monitoring tool. We will also need to setup an Elastic Stack to gather and monitor logging. Eventually aggregate all the incidents and generate "actionable" alerts to Slack or Pager Duty for notification.
-
