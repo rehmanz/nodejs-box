@@ -8,6 +8,10 @@ if [ ! -e ${firewall_file} ]; then
     echo "Allowing current SSH connection"
     sudo iptables -A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
 
+    echo "Allowing traffic for localhost"
+    sudo iptables -A INPUT -i lo -j ACCEPT
+    sudo iptables -A OUTPUT -o lo -j ACCEPT
+
     echo "Limiting access to {{ salt['pillar.get']('nodejs:firewall:ip', '10.0.0.0') }}"
     sudo iptables -A INPUT -s {{ salt['pillar.get']('nodejs:firewall:ip', '10.0.0.0') }}/{{ salt['pillar.get']('nodejs:firewall:subnet_mask', '8') }} -j ACCEPT
 
