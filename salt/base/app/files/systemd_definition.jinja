@@ -1,0 +1,12 @@
+[Unit]
+Description=app
+
+[Service]
+ExecStart={{ salt['pillar.get']('nodejs:package:path', '/usr/bin') }}/nodejs {{ salt['pillar.get']('nodejs:application:path', '/opt/app/src') }}/app.js
+ExecStop=/bin/kill $MAINPID
+KillMode=process
+Restart=on-failure
+ExecReload=/bin/kill -HUP $MAINPID
+
+[Install]
+WantedBy=multi-user.target

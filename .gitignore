@@ -99,3 +99,11 @@ ENV/
 
 # mypy
 .mypy_cache/
+
+# PyCharm files
+.idea
+.idea/*
+
+# Vagrant files
+.vagrant
+.vagrant/*
