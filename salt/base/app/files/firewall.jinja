@@ -1,0 +1,19 @@
+#!/bin/bash -e
+
+firewall_file=~/.firewall_setup.done
+if [ ! -e ${firewall_file} ]; then
+    echo "Flushing iptables"
+    sudo iptables -F
+
+    echo "Allowing current SSH connection"
+    sudo iptables -A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
+
+    echo "Limiting access to {{ salt['pillar.get']('nodejs:firewall:ip', '10.0.0.0') }}"
+    sudo iptables -A INPUT -s {{ salt['pillar.get']('nodejs:firewall:ip', '10.0.0.0') }}/{{ salt['pillar.get']('nodejs:firewall:subnet_mask', '8') }} -j ACCEPT
+
+    echo "Denying everything else"
+    sudo iptables -A INPUT -j DROP
+
+    echo "Final INPUT chain:"
+    sudo iptables -L
+fi

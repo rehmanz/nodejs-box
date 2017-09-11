@@ -6,8 +6,13 @@ Vagrant.configure("2") do |config|
   ##
   #config.vm.network "public_network", bridge: "en0: Wi-Fi (AirPort)"
   config.vm.network "forwarded_port", guest: 80, host: 8080, auto_correct: true
-  config.vm.network "forwarded_port", guest: 8080, host: 8081, auto_correct: true
+  #config.vm.network "forwarded_port", guest: 8080, host: 8081, auto_correct: true
   #config.vm.network :private_network, ip: "192.168.0.42"
+
+  ##
+  # Application Setup
+  ##
+  config.vm.synced_folder "application", "/opt/app/"
 
   ##
   # Provisioning Logic
@@ -15,6 +20,7 @@ Vagrant.configure("2") do |config|
   config.vm.synced_folder "salt/base", "/srv/salt/formulas/base"
   config.vm.synced_folder "salt/pillar", "/srv/salt/pillar/base/"
 
+  #TODO: Investigate tornado python lib issue for salt dependency
   config.vm.provision "shell", path: "scripts/salt_dependencies.sh"
 
   config.vm.provision :salt do |salt|
